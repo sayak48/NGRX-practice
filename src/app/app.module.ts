@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { HeadersComponent } from './shared/components/headers/headers.component';
 import { PostlistComponent } from './post/postlist/postlist.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducer } from './store/app.state';
 
 
 @NgModule({
@@ -30,7 +32,11 @@ import { PostlistComponent } from './post/postlist/postlist.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    StoreModule.forRoot({ count: counterReducer })
+    StoreModule.forRoot(appReducer),
+    // Instrumentation must be imported after importing StoreModule (config is optional)
+    StoreDevtoolsModule.instrument({
+      logOnly: !isDevMode(), // Restrict extension to log-only mode      
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
