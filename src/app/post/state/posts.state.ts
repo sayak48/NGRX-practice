@@ -2,7 +2,7 @@ export interface PostState {
     posts: Post[]
 }
 export interface Post {
-    id: string,
+    id?: string,
     title: string,
     description: string
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { CounterState } from '../state/counter.state';
 import { changeAppName, customInput } from '../state/counter.actions';
 import { getAppName } from '../state/counter.selectors';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-counter-custom-input',
@@ -15,7 +16,10 @@ export class CounterCustomInputComponent {
   value: number;
   appName$: Observable<string>;
 
-  constructor(private store: Store<{ count: CounterState }>) { }
+  //before app state
+  //constructor(private store: Store<{ count: CounterState }>) { }
+
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.appName$ = this.store.select(getAppName);

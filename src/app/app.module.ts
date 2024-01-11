@@ -9,12 +9,14 @@ import { CounterOutputComponent } from './counter files/counter-output/counter-o
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './counter files/state/counter.reducer';
 import { CounterCustomInputComponent } from './counter files/counter-custom-input/counter-custom-input.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { HeadersComponent } from './shared/components/headers/headers.component';
 import { PostlistComponent } from './post/postlist/postlist.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducer } from './store/app.state';
+import { AddPostComponent } from './post/add-post/add-post.component';
+import { EditPostComponent } from './post/edit-post/edit-post.component';
 
 
 @NgModule({
@@ -26,12 +28,15 @@ import { appReducer } from './store/app.state';
     CounterCustomInputComponent,
     HomeComponent,
     HeadersComponent,
-    PostlistComponent
+    PostlistComponent,
+    AddPostComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(appReducer),
     // Instrumentation must be imported after importing StoreModule (config is optional)
     StoreDevtoolsModule.instrument({
