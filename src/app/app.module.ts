@@ -23,7 +23,8 @@ import { appReducer } from './store/app.state';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(appReducer),
+    //StoreModule.forRoot(appReducer),
+    StoreModule.forRoot({}),
     // Instrumentation must be imported after importing StoreModule (config is optional)
     StoreDevtoolsModule.instrument({
       logOnly: !isDevMode(), // Restrict extension to log-only mode      
