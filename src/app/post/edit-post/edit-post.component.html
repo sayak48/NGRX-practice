@@ -20,10 +20,10 @@
                 <textarea for="Description" class="form-control" formControlName="description"></textarea>
                 <div *ngIf="postForm.get('description').touched && !postForm.get('description').valid">
                     <div *ngIf="postForm.get('description').errors['required']">
-                        Title is required
+                        Description is required
                     </div>
                     <div *ngIf="postForm.get('description').errors['minlength']">
-                        Title should be minimum 6 characters
+                        Description should be minimum 6 characters
                     </div>
                 </div>
             </div>

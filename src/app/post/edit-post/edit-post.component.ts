@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { getPostById } from '../state/posts.selector';
 import { Post } from '../state/posts.state';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { editpost } from '../state/posts.actions';
 
 @Component({
   selector: 'app-edit-post',
@@ -17,7 +18,7 @@ export class EditPostComponent {
   post: Post;
   postForm: FormGroup;
   postSubscription: Subscription
-  constructor(private route: ActivatedRoute, private store: Store<AppState>) { }
+  constructor(private route: ActivatedRoute, private store: Store<AppState>, private router: Router) { }
 
   ngOnInit() {
     //to get the data, first we need to get the id
@@ -42,7 +43,25 @@ export class EditPostComponent {
   }
 
   onPostFormUpdate() {
+    if (!this.postForm.valid) {
+      //if not valid end
+      return;
+    }
 
+    //updated values
+    const title = this.postForm.value.title;
+    const description = this.postForm.value.description;
+
+    //form the post to be updated as effect of update action
+    const post: Post = {
+      id: this.post.id,
+      title,
+      description
+    }
+    //dispatch the action
+
+    this.store.dispatch(editpost({ post }));
+    this.router.navigate(['posts'])
   }
 
   ngOnDestroy() {
