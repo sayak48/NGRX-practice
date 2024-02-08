@@ -19,7 +19,8 @@
                     <td style="word-break: break-all">{{ post.title }}</td>
                     <td style="word-break: break-all">{{ post.description }}</td>
                     <td>
-                        <a href="#" class="btn btn-primary" [routerLink]="['edit', post.id]">Update</a>
+                        <a href="#" class="btn btn-primary" [routerLink]="['edit', post.id]">Update</a>&nbsp;
+                        <button class="btn btn-danger" (click)="onDeletePost(post.id)">Delete</button>
                     </td>
                 </tr>
             </tbody>

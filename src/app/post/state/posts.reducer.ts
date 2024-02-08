@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store"
 import { initialState } from "./posts.state"
-import { addpost, editpost } from "./posts.actions";
+import { addpost, deletepost, editpost } from "./posts.actions";
 
 const _postsReducer = createReducer(initialState,
     on(addpost, (state, action) => {
@@ -21,6 +21,15 @@ const _postsReducer = createReducer(initialState,
         return {
             ...state,
             posts: updatedPost
+        }
+    }),
+    //here instead of writing actions and accessing the id through actions.id, using spread operator, we are storing id in id 
+    on(deletepost, (state, { id }) => {
+
+        const postsAfterDelete = state.posts.filter(post => post.id !== id)
+        return {
+            ...state,
+            posts: postsAfterDelete
         }
     })
 );
